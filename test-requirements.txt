@@ -1,0 +1,4 @@
+nose>=1.2.1
+mock>=1.0.1
+pyhamcrest>=1.6
+requests==2.9.1
