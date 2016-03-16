@@ -31,7 +31,11 @@ class Api(object):
 
     def create_job(self, job_name):
         params = {}
-        data = flask.request.json
+        request_data = flask.request.data
+        if request_data == '':
+            data = {}
+        else:
+            data = json.loads(flask.request.data)
         if data:
             if 'auth_token' in data:
                 params['auth_token'] = data['auth_token']
