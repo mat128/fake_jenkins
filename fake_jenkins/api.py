@@ -100,7 +100,7 @@ class Api(object):
     @exception_handler
     def get_build(self, job_name, build_number):
         job = self.core.get_job(job_name)
-        build = job.get_build(build_number)
+        build = job.get_build(int(build_number))
         response = flask.make_response(json.dumps(build_to_api_dict(build)))
         response.headers['Content-Type'] = 'application/json'
         return response

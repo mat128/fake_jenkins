@@ -150,6 +150,8 @@ class FakeJenkinsServerTest(unittest.TestCase):
         self.core.get_job.return_value = job_mock
 
         response = self.client.get('/job/{job}/{build}/api/json'.format(job='myJob', build=1))
+        job_mock.get_build.assert_called_with(1)
+
         assert_that(response.status_code, is_(200))
         assert_that(response.content_type, is_("application/json"))
 
