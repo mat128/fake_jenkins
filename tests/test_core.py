@@ -1,13 +1,18 @@
 import unittest
 
 from fake_jenkins import core
-from fake_jenkins.core import BuildParameter, JobNotFound, BuildNotFound
+from fake_jenkins.core import BuildParameter, JobNotFound, BuildNotFound, Job
 from hamcrest import assert_that, is_, has_entry, has_length
 
 
 class CoreTest(unittest.TestCase):
     def setUp(self):
         self.core = core.Core()
+
+    def test_core_can_take_jobs(self):
+        c = core.Core(jobs={'myJob': Job('myJob', auth_token='yes')})
+        job = c.get_job('myJob')
+        assert_that(job.name, is_('myJob'))
 
     def test_job(self):
         self.core.create_job(name='test_job')

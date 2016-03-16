@@ -1,6 +1,6 @@
 class Core(object):
-    def __init__(self):
-        self.jobs = {}
+    def __init__(self, jobs=None):
+        self.jobs = jobs or {}
 
     def create_job(self, name, auth_token=None, parameters=None):
         self.jobs[name] = Job(name=name, auth_token=auth_token, parameters=parameters)
